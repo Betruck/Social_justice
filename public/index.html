@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civic Engagement Platform</title>
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+    <div class="wrapper">
+    <nav>
+        <div class="logo">
+          <a href="./">Governance Issues</a>
+        </div>
+        <div class="nav-links">
+          <a href="./login.html">Login</a>
+          <a href="./register.html">Register</a>
+        </div>
+    </nav>
+      
+    <header>
+        <h1>Civic Issues</h1>
+    </header>
+
+
+    <div class="container">
+        <form id="issueForm">
+            <input type="text" id="title" placeholder="Issue Title" required>
+            <textarea id="description" placeholder="Describe the issue" required></textarea>
+            <input type="submit" value="Submit Issue">
+        </form>
+
+        <div id="issues">
+            <!-- Issues will be displayed here -->
+        </div>
+    </div>
+
+    <footer>
+        <div>© SOllCreations, Inc. 2024</div>
+    </footer>
+    </div>
+    <script>
+        const form = document.getElementById('issueForm');
+        const issuesDiv = document.getElementById('issues');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const title = document.getElementById('title').value;
+            const description = document.getElementById('description').value;
+
+            const response = await fetch('/api/issues', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ title, description })
+            });
+
+            const result = await response.json();
+            if (result.success) {
+                displayIssues();
+                form.reset();
+            }
+        });
+
+        async function displayIssues() {
+            const response = await fetch('/api/issues');
+            const issues = await response.json();
+
+            issuesDiv.innerHTML = issues.map(issue => `
+                <div>
+                    <h3>${issue.title}</h3>
+                    <p>${issue.description}</p>
+                    <hr>
+                </div>
+            `).join('');
+        }
+
+        // Load issues when the page loads
+        displayIssues();
+    </script>
+</body>
+</html>

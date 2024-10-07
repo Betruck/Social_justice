@@ -1,0 +1,87 @@
+/* General Style */
+html, body {
+    height: 100%; /* Ensures the page takes the full height of the viewport */
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+    background-color: #FFF8E8;
+    color: #674636;
+}
+
+h1, h2, h3 {
+    color: #674636;
+    text-align: center;
+}
+
+/* Wrapper to ensure full-page height */
+.wrapper {
+    min-height: 100vh;  /* Full viewport height */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Main content takes the rest of the available space */
+.main-content {
+    flex: 1;  /* Pushes footer to the bottom */
+}
+
+/* Navbar */
+nav {
+    background-color: #674636;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+  
+nav a {
+    color: #FFF8E8;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 0 10px;
+}
+
+nav a:hover {
+    color: #AAB396;
+}
+
+/* Form */
+form {
+    background-color: #F7EED3;
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+input[type="text"], input[type="password"], textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 2px solid #AAB396;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Submit button */
+input[type="submit"] {
+    background-color: #674636;
+    color: #FFF8E8;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+}
+
+input[type="submit"]:hover {
+    background-color: #AAB396;
+}
+
+/* Footer */
+footer {
+    background-color: #674636;
+    color: #FFF8E8;
+    padding: 20px;
+    text-align: center;
+    margin-top: auto; /* Ensures footer stays at the bottom */
+}
